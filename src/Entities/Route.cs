@@ -22,6 +22,15 @@ namespace train_puzzle.Entities {
         public IEnumerable<TrainLine> Lines { get; set; }
 
         /// <summary>
+        /// Gets the Cummulative Distance of the route
+        /// </summary>
+        public float Distance {
+            get {
+                return Lines.Sum(l => l.Distance);
+            }
+        }
+
+        /// <summary>
         /// Evaluates if the current route is valid
         /// </summary>
         /// <returns>Whether or not the route passes validation</returns>
