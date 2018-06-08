@@ -1,18 +1,46 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using train_puzzle.Entities;
 
 namespace train_puzzle.Services {
-    class TrainLineService {
-        private Dictionary<string, TrainLine> Collection { get; set; }
+    /// <summary>
+    /// A Class that handles unique Train Lines
+    /// </summary>
+    public class TrainLineService : ITrainLineService {
+        private Dictionary<string, TrainLine> Collection;
 
-        public IEnumerable<TrainLine> TrainLines {
-            get {
-                return Collection.Select(pair => pair.Value);
-            }
+        /// <summary>
+        /// Constructor for TrainLineService
+        /// </summary>
+        public TrainLineService() {
+            Collection = new Dictionary<string, TrainLine>();
         }
 
+        /// <summary>
+        /// Get a list of TrainLines registered
+        /// </summary>
+        /// <returns>A list of Train Lines</returns>
+        public IEnumerable<TrainLine> GetTrainLines() {
+            return Collection.Select(pair => pair.Value);
+        }
+
+        /// <summary>
+        /// Get a list of TrainLines registered filtered by predicate
+        /// </summary>
+        /// <param name="predicate">Filter Predicate</param>
+        /// <returns>A list of Train Lines</returns>
+        public IEnumerable<TrainLine> FilterTrainLines(Func<TrainLine, bool> predicate) {
+            return GetTrainLines()
+                .Where(predicate);
+        }
+
+        /// <summary>
+        /// Add a train line. Verifies that train line does not exist already
+        /// </summary>
+        /// <param name="line">The TrainLine to add</param>
+        /// <returns>Void</returns>
         public void Add(TrainLine line) {
             if (!Collection.ContainsKey(line.Id)) {
                 Collection.Add(line.Id, line);
@@ -27,7 +55,7 @@ namespace train_puzzle.Services {
         /// </summary>
         /// <param name="inputString">The string of input</param>
         /// <return>A List of TrainLines</return>
-        public static IEnumerable<TrainLine> Parse(string inputString) {
+        public IEnumerable<TrainLine> Parse(string inputString) {
             // Accept in comma deliminated
             var results = new List<TrainLine>();
             foreach(var chunk in inputString.Split(',')) {
@@ -47,7 +75,7 @@ namespace train_puzzle.Services {
                 instance.Distance = float.Parse(distanceString, CultureInfo.CurrentUICulture);
 
                 // Add line to parse results
-                results.Add(instance);
+                results.Add(instance); 
             }
 
             return results;
