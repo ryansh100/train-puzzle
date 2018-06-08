@@ -8,6 +8,7 @@ Series of challenges to solve regarding trips on trains.
 2. Navigate to `src` folder
 3. `dotnet restore`
 4. `dotnet run`
+5. Navigate to `localhost:5000` in a browser (tested with Chrome).
 
 ## Run Tests
 
