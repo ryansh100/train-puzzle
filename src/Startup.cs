@@ -40,6 +40,7 @@ namespace train_puzzle
             app.UseStaticFiles();
 
             app.UseMvc(routes => {
+                // Serve static HTML page for all unrouted requests.
                 routes.MapSpaFallbackRoute("spa", new { controller = "Home", action = "Spa" });
             });
         }

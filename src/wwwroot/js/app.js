@@ -7,7 +7,9 @@ var parseResponse = function (response) {
     return response.json();
 }
 
-
+// Not as pretty as I might like, 
+// but avoiding extra packages and module loaders.
+// Webpack would really clean  this up.
 var app = new Vue({
     el: '#app',
     data: {
@@ -51,6 +53,7 @@ var app = new Vue({
                 .then(onData.bind(this))
         },
         getReport: function () {
+            
             var onData = function (data) {
                 // output 1
                 this.report.output1 = data.output1;
