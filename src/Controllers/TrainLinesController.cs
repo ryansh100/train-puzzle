@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using train_puzzle.Entities;
 using train_puzzle.Services;
 
 namespace train_puzzle.Controllers
@@ -15,36 +16,35 @@ namespace train_puzzle.Controllers
             this.lineSvc = lineSvc;
         }
 
-        // GET api/values
+        // GET api/trainlines
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<TrainLine> Get()
         {
-            return new string[] { "value1", "value2" };
+            return lineSvc.GetTrainLines();
         }
 
-        // GET api/values/5
+        // GET api/trainlines/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public TrainLine Get(string id)
         {
-            return "value";
+            return lineSvc.GetTrainLine(id);
         }
 
-        // POST api/values
+        // POST api/trainlines
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]AddTrainLineRequest request)
         {
+            var lines = lineSvc.Parse(request.InputString);
+            foreach(var line in lines) {
+                lineSvc.Add(line);
+            }
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
+        // DELETE api/trainlines/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            lineSvc.DeleteTrainLine(id);
         }
     }
 }

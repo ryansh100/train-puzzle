@@ -12,6 +12,21 @@ namespace train_puzzle.Services {
         IEnumerable<TrainLine> GetTrainLines();
 
         /// <summary>
+        /// Get a Train Line by Id in AA0 format
+        /// </summary>
+        /// <param name="id">The id of train line</param>
+        /// <returns>The Train Lines</returns>
+        TrainLine GetTrainLine(string id);
+
+        /// <summary>
+        /// Delete a Train Line by Id in AA0 format
+        /// </summary>
+        /// <param name="id">The id of train line</param>
+        /// <returns>void</returns>
+
+        void DeleteTrainLine(string id);
+
+        /// <summary>
         /// Get a list of TrainLines registered filtered by predicate
         /// </summary>
         /// <param name="predicate">Filter Predicate</param>

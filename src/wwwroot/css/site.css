@@ -1,0 +1,8 @@
+html, body {
+    background-color: beige;
+    height: 100%;
+}
+
+.valid {
+    color: #00d1b2;
+}

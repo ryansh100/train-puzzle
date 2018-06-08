@@ -50,7 +50,7 @@ namespace TrainTests
         {
             var distance = routeSvc.GetDistance("A", "E", "B", "C", "D");
 
-            Assert.AreEqual((float)22, distance, "Expect A-B-C distance to be 22");
+            Assert.AreEqual((float)22, distance, "Expect A-E-B-C-D distance to be 22");
         }
 
         [TestMethod]

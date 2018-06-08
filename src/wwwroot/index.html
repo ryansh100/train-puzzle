@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+    <title>Trains</title>
+</head>
+<body>
+    <section id="app" class="section">
+        <div class="container">
+            <h1 class="title">
+                Trains
+            </h1>
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <h2 class="title">Input Lines</h2>
+                        <form v-on:submit.prevent="addTrainLine">
+                            <div class="field">
+                                <label class="label">Add Train Line</label>
+                                <div class="columns">
+                                    <div class="column">
+                                        <div class="control">
+                                            <input class="input"
+                                                type="text"
+                                                v-model="lineInput"
+                                                placeholder="Enter in AA0 format." />
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="control">
+                                            <button class="button is-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <hr />
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Origin</th>
+                                    <th>Destination</th>
+                                    <th>Distance</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="trainLine in trainLines">
+                                    <td>{{ trainLine.id }}</td>
+                                    <td>{{ trainLine.origin }}</td>
+                                    <td>{{ trainLine.destination }}</td>
+                                    <td>{{ trainLine.distance }}</td>
+                                    <td><a v-on:click="removeTrainLine(trainLine)" class="delete"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h2 class="title">Output Results</h2>
+                        <dl>
+                            <b>Output #1</b>
+                            <dd v-bind:class="{valid: report.output1Valid}">{{ report.output1 }}</dd>
+                            <b>Output #2</b>
+                            <dd v-bind:class="{valid: report.output2Valid}">{{ report.output2 }}</dd>
+                            <b>Output #3</b>
+                            <dd v-bind:class="{valid: report.output3Valid}">{{ report.output3 }}</dd>
+                            <b>Output #4</b>
+                            <dd v-bind:class="{valid: report.output4Valid}">{{ report.output4 }}</dd>
+                            <b>Output #5</b>
+                            <dd v-bind:class="{valid: report.output5Valid}">{{ report.output5 }}</dd>
+                            <b>Output #6</b>
+                            <dd v-bind:class="{valid: report.output6Valid}">{{ report.output6 }}</dd>
+                            <b>Output #7</b>
+                            <dd v-bind:class="{valid: report.output7Valid}">{{ report.output7 }}</dd>
+                            <b>Output #8</b>
+                            <dd v-bind:class="{valid: report.output8Valid}">{{ report.output8 }}</dd>
+                            <b>Output #9</b>
+                            <dd v-bind:class="{valid: report.output9Valid}">{{ report.output9 }}</dd>
+                            <b>Output #10</b>
+                            <dd v-bind:class="{valid: report.output10Valid}">{{ report.output10}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using train_puzzle.Services;
 
 namespace train_puzzle
 {
@@ -23,6 +24,8 @@ namespace train_puzzle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ITrainLineService, TrainLineService>();
+            services.AddSingleton<IRouteService, RouteService>();
             services.AddMvc();
         }
 
@@ -34,7 +37,11 @@ namespace train_puzzle
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseStaticFiles();
+
+            app.UseMvc(routes => {
+                routes.MapSpaFallbackRoute("spa", new { controller = "Home", action = "Spa" });
+            });
         }
     }
 }
