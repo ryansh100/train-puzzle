@@ -1,4 +1,4 @@
-#Train Challenge
+# Train Challenge
 
 Series of challenges to solve regarding trips on trains.
 
@@ -25,7 +25,7 @@ I also assume that the NET Core 2.1.0 SDK and relatively new browser is installe
 2. Navigate to `src` folder
 3. `dotnet restore`
 4. `dotnet run`
-5. Navigate to `localhost:5000` in a browser (tested with Chrome).
+5. Navigate to `localhost:5000` in a browser (tested with Chrome & Edge).
 
 ## Run Tests
 
